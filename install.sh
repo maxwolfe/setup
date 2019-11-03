@@ -164,10 +164,9 @@ install_packages () {
 	clone_and_log https://github.com/rbenv/rbenv.git "$HOME/.rbenv"
 	echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> "$HOME/.bashrc"
 	echo 'eval "$(rbenv init -)"' >> "$HOME/.bashrc"
-	exec $SHELL
 	clone_and_log https://github.com/rbenv/ruby-build.git "$HOME/.rbenv/plugins/ruby-build"
 	echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> "$HOME/.bashrc"
-	exec $SHELL
+	source "$HOME/.bashrc"
 	rbenv install 2.4.4
 	rbenv global 2.4.4
 }
