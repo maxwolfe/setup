@@ -191,6 +191,7 @@ other_packages () {
 shell_setup() {
 	# Shell Setup
 	username="$(echo $HOME | sed -e 's/\/home\///g')"
+	log "USERNAME=$username"
 
 	## TaskMax Install
 	clone_and_log https://github.com/maxwolfe/task-max.git "$HOME/.taskmax"
@@ -198,7 +199,7 @@ shell_setup() {
 	## zsh Setup
 	usermod -s "$(which zsh)" "$username"
 	clone_and_log https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting"
-	clone_and_log --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto"
+	git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto"
 
 	### Copy each config
 	PREZ="$HOME/.zprezto/runcoms"
