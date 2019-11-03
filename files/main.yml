@@ -16,7 +16,7 @@ windows:
       panes:
           - vim:
               - vim ~/
-              - <e
+              - :tabe
           - gdb:
               - gdb
               - help
