@@ -26,9 +26,9 @@ install_and_log () {
 
 	if [ "$ret" -ne 0 ]; then
 		log "$PACKAGE: Failed to Install"
+	else
+		log "$PACKAGE: Successfully Installed"
 	fi
-
-	log "$PACKAGE: Successfully Installed"
 }
 
 
@@ -41,9 +41,10 @@ clone_and_log () {
 
 	if [ "$ret" -ne 0 ]; then
 		log "$SOURCE: Failed to Clone"
+	else
+		log "$SOURCE: Successfully Cloned"
 	fi
 
-	log "$SOURCE: Successfully Cloned"
 }
 
 
@@ -56,9 +57,9 @@ python_install_and_log () {
 
 	if [ "$ret" -ne 0 ]; then
 		log "$PACKAGE: Failed to Install"
+	else
+		log "$PACKAGE: Successfully Installed"
 	fi
-
-	log "$PACKAGE: Successfully Installed"
 }
 
 
@@ -70,9 +71,9 @@ ruby_install_and_log () {
 
 	if [ "$ret" -ne 0 ]; then
 		log "$PACKAGE: Failed to Install"
+	else
+		log "$PACKAGE: Successfully Installed"
 	fi
-
-	log "$PACKAGE: Successfully Installed"
 }
 
 
@@ -143,7 +144,7 @@ install_packages () {
 	install_and_log zsh
 
 	## Ruby 2.4
-	install_and_log ruby2.4 ruby2.4-dev
+	install_and_log ruby2.5 ruby2.5-dev
 
 	## PDF Reader
 	install_and_log evince
