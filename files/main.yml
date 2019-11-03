@@ -1,0 +1,24 @@
+# ~/.config/tmuxinator/main.yml
+
+name: main
+root: ~/
+
+windows:
+  - main:
+      layout: main-vertical
+      panes:
+          - terminal:
+              - clear
+          - tasks:
+              - taskmax
+  - editor:
+      layout: even-horizontal
+      panes:
+          - vim:
+              - vim ~/
+              - <e
+          - gdb:
+              - gdb
+              - help
+              - clear
+  - monitor: htop

@@ -1,0 +1,85 @@
+" Custom Colors
+colorscheme max
+
+" My Vim Defaults
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0
+set number
+
+"Airline Theme
+let g:airline_theme='kolor'
+
+"Setup for Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"Install the Plugins
+so ~/.vim/plugins.vim
+
+" Mappings
+" Fugitive Git Status + Commit
+nnoremap gs :Gst<enter>
+nnoremap gw :Gco<enter>
+"Git Add, Remove, Blame, and Move
+nnoremap ga :Gwrite<enter>
+nnoremap gr :Gremove<enter>
+nnoremap gb :Gblame<enter>
+nnoremap gm :Gmove<space>
+nnoremap gp :Gpush<space>
+
+"Sudo Write
+nnoremap wq :SudoWrite<enter>:q<enter>
+"Rename 
+nnoremap y :Rename<space>
+
+"Close File
+nnoremap x :q<enter>
+nnoremap xx :qa<enter>
+
+"Window movement
+nnoremap wl <c-w>l
+nnoremap wh <c-w>h
+nnoremap wj <c-w>j
+nnoremap wk <c-w>k
+
+"New tab
+map e :tabe<space>
+
+"Refresh
+nnoremap ,r :edit<enter>
+
+"Task Warrior
+nnoremap t :TW<enter>
+nnoremap <buffer>t :TW<enter>
+
+"Powerline
+"Latest version = 3.6
+set rtp+=/usr/local/lib/python3.6/dist-packages/powerline/bindings/vim/
+"Always show statusline
+set laststatus=2
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
+"Nice To Haves
+set nocompatible
+filetype indent plugin on
+set hidden
+set wildmenu
+set showcmd
+set hlsearch
+set ignorecase
+set smartcase
+set backspace=indent,eol,start
+set autoindent
+set nostartofline
+set ruler
+set confirm
+set cmdheight=2
+set notimeout ttimeout ttimeoutlen=200

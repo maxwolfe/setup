@@ -1,0 +1,35 @@
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+	source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+
+# Constants
+export EDITOR=$(which vim)
+export VISUAL=$(which vim)
+
+# Tmuxinator
+source ~/.bin/tmuxinator.zsh
+
+# Syntax Highlighting
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Powerline
+## 3.6 = Current Version
+if [[ -r /usr/local/lib/python3.6/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+	source /usr/local/lib/python3.6/dist-packages/powerline/bindings/zsh/powerline.zsh
+fi
+
+# Launch Main Tmuxinator Session on Start
+if [ "$TMUX" = "" ]; then mux start main; fi
+
+# Aliases
+taskmax () {
+	"$HOME/.taskmax/task-max"
+}
