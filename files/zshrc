@@ -26,6 +26,11 @@ if [[ -r /usr/local/lib/python3.6/dist-packages/powerline/bindings/zsh/powerline
 	source /usr/local/lib/python3.6/dist-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
+# fg with ^Z
+_zsh_cli_fg() { fg; }
+zle -N _zsh_cli_fg
+bindkey '^Z' _zsh_cli_fg
+
 # Launch Main Tmuxinator Session on Start
 if [ "$TMUX" = "" ]; then mux start main; fi
 

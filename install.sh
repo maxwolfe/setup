@@ -32,6 +32,50 @@ install_and_log () {
 }
 
 
+clone_and_log () {
+	local SOURCE="$1"; shift
+	local DEST="$1"; shift
+
+  clone_and_log "$SOURCE" "$DEST"
+	ret="$?"
+
+	if [ "$ret" -ne 0 ]; then
+		log "$SOURCE: Failed to Clone"
+	fi
+
+	log "$SOURCE: Successfully Cloned"
+}
+
+
+python_install_and_log () {
+	local VERSION="$1"; shift
+	local PACKAGE="$1"; shift
+
+  pip${VERSION} install "$PACKAGE"
+	ret="$?"
+
+	if [ "$ret" -ne 0 ]; then
+		log "$PACKAGE: Failed to Install"
+	fi
+
+	log "$PACKAGE: Successfully Installed"
+}
+
+
+ruby_install_and_log () {
+	local PACKAGE="$1"; shift
+
+  gem install "$PACKAGE"
+	ret="$?"
+
+	if [ "$ret" -ne 0 ]; then
+		log "$PACKAGE: Failed to Install"
+	fi
+
+	log "$PACKAGE: Successfully Installed"
+}
+
+
 install_packages () {
 	# Add Repositories
 
@@ -73,7 +117,7 @@ install_packages () {
 
 	## Debugging
 	install_and_log gdb
-	git clone https://github.com/longld/peda.git "$HOME/peda"
+	clone_and_log https://github.com/longld/peda.git "$HOME/peda"
 	echo "source $HOME/.peda/peda.py" >> "$HOME/.gdbinit"
 
 	## Better SSH
@@ -109,7 +153,7 @@ vim_setup () {
 	# Vim Setup
 
 	## Vundle: Vim Plugin Manager
-	git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
+	clone_and_log https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
 
 	## Copy Plugins List
 	cp "$FILES/plugins.vim" "$HOME/.vim/plugins.vim"
@@ -126,21 +170,21 @@ other_packages () {
 	# Python Packages
 
 	## Virtualenv
-	pip install virtualenv
-	pip3 install virtualenv
+	python_install_and_log 2.7 virtualenv
+	python_install_and_log 3 virtualenv
 
 	## Powerline
-	pip3 install git+git://github.com/Lokaltog/powerline
+	python_install_and_log 3 git+git://github.com/Lokaltog/powerline
 
 	# Ruby Packages
 
 	## For Tmuxinator
-	gem install tmuxinator
+	ruby_install_and_log tmuxinator
 
 	## For Vagrant
-	gem install nokogiri
-	gem install ffi
-	gem install unf_ext
+	ruby_install_and_log install nokogiri
+	ruby_install_and_log install ffi
+	ruby_install_and_log install unf_ext
 }
 
 
@@ -149,15 +193,15 @@ shell_setup() {
 	username="$(echo $HOME | sed -e 's/\/home\///g')"
 
 	## TaskMax Install
-	git clone https://github.com/maxwolfe/task-max.git "$HOME/.taskmax"
+	clone_and_log https://github.com/maxwolfe/task-max.git "$HOME/.taskmax"
 
 	## zsh Setup
 	usermod -s "$(which zsh)" "$username"
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting"
-	git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto"
+	clone_and_log https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting"
+	clone_and_log --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto"
 
 	### Copy each config
-	PREZ=~/.zprezto/runcoms
+	PREZ="$HOME/.zprezto/runcoms"
 	cp "$PREZ/zlogin" "$HOME/.zlogin"
 	cp "$PREZ/zlogout" "$HOME/.zlogout"
 	cp "$PREZ/zprofile" "$HOME/.zprofile"
@@ -166,7 +210,7 @@ shell_setup() {
 	cp "$FILES/zshrc"  "$HOME/.zshrc"
 
 	## Tmux Setup
-	git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+	clone_and_log https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 	cp "$FILES/tmux.conf" "$HOME/.tmux.conf"
 	"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
