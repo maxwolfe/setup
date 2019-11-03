@@ -132,7 +132,7 @@ install_packages () {
 
 	## Debugging
 	install_and_log gdb
-	clone_and_log https://github.com/longld/peda.git "$HOME/peda"
+	clone_and_log https://github.com/longld/peda.git "$HOME/.peda"
 	echo "source $HOME/.peda/peda.py" >> "$HOME/.gdbinit"
 
 	## Better SSH
