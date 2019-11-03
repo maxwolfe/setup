@@ -21,7 +21,7 @@ log () {
 install_and_log () {
 	local PACKAGE="$1"; shift
 
-	install_and_log "$PACKAGE"
+  apt-get install -y "$PACKAGE"
 	ret="$?"
 
 	if [ "$ret" -ne 0 ]; then
