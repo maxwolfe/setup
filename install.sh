@@ -66,7 +66,7 @@ python_install_and_log () {
 ruby_install_and_log () {
 	local PACKAGE="$1"; shift
 
-  gem2.4 install "$PACKAGE"
+  "$HOME/.rbenv/versions/2.4.6/gem" install "$PACKAGE"
 	ret="$?"
 
 	if [ "$ret" -ne 0 ]; then
