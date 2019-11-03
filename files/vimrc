@@ -7,6 +7,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=0
 set number
+set rnu
 
 "Airline Theme
 let g:airline_theme='kolor'
@@ -34,30 +35,11 @@ nnoremap gb :Gblame<enter>
 nnoremap gm :Gmove<space>
 nnoremap gp :Gpush<space>
 
-"Sudo Write
-nnoremap wq :SudoWrite<enter>:q<enter>
-"Rename 
-nnoremap y :Rename<space>
-
-"Close File
-nnoremap x :q<enter>
-nnoremap xx :qa<enter>
-
-"Window movement
-nnoremap wl <c-w>l
-nnoremap wh <c-w>h
-nnoremap wj <c-w>j
-nnoremap wk <c-w>k
-
-"New tab
-map e :tabe<space>
-
 "Refresh
 nnoremap ,r :edit<enter>
 
-"Task Warrior
-nnoremap t :TW<enter>
-nnoremap <buffer>t :TW<enter>
+"Move backwards easier
+nnoremap ,w b
 
 "Powerline
 "Latest version = 3.6
