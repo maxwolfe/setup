@@ -66,7 +66,7 @@ python_install_and_log () {
 ruby_install_and_log () {
 	local PACKAGE="$1"; shift
 
-  gem install "$PACKAGE"
+  gem2.4 install "$PACKAGE"
 	ret="$?"
 
 	if [ "$ret" -ne 0 ]; then
@@ -160,12 +160,18 @@ install_packages () {
 	## PDF Reader
 	install_and_log evince
 
+	## Ruby reqs
+	install_and_log autoconf
+	install_and_log libssl-dev
+	install_and_log libreadline-dev
+	install_and_log zlib1g-dev
+
 	## Ruby Install
 	clone_and_log https://github.com/rbenv/rbenv.git "$HOME/.rbenv"
 	clone_and_log https://github.com/rbenv/ruby-build.git "$HOME/.rbenv/plugins/ruby-build"
 
-	"$HOME/.rbenv/bin/rbenv" install 2.4.4
-	"$HOME/.rbenv/bin/rbenv" global 2.4.4
+	"$HOME/.rbenv/bin/rbenv" install 2.4.6
+	"$HOME/.rbenv/bin/rbenv" global 2.4.6
 }
 
 vim_setup () {
