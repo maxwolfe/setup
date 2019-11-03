@@ -182,9 +182,9 @@ other_packages () {
 	ruby_install_and_log tmuxinator
 
 	## For Vagrant
-	ruby_install_and_log install nokogiri
-	ruby_install_and_log install ffi
-	ruby_install_and_log install unf_ext
+	ruby_install_and_log nokogiri
+	ruby_install_and_log ffi
+	ruby_install_and_log unf_ext
 }
 
 
