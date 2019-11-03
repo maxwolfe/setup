@@ -1,5 +1,5 @@
 # Script Directory 
-DIR="$0"
+DIR="$(dirname $0)"
 # Files Directory
 FILES="$DIR/files"
 # Log File
