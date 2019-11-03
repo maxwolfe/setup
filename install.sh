@@ -1,5 +1,5 @@
 # Script Directory 
-DIR="$(dirname ${BASH_SOURCE[0]})"
+DIR="$0"
 # Files Directory
 FILES="$DIR/files"
 # Log File
