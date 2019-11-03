@@ -77,6 +77,22 @@ ruby_install_and_log () {
 }
 
 
+cp_and_log () {
+	local SOURCE="$1"; shift
+	local DEST="$1"; shift
+
+  cp "$SOURCE" "$DEST"
+	ret="$?"
+
+	if [ "$ret" -ne 0 ]; then
+		log "$SOURCE: Failed to Copy"
+	else
+		log "$SOURCE: Successfully Copied"
+	fi
+
+}
+
+
 install_packages () {
 	# Add Repositories
 
@@ -157,12 +173,12 @@ vim_setup () {
 	clone_and_log https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
 
 	## Copy Plugins List
-	cp "$FILES/plugins.vim" "$HOME/.vim/plugins.vim"
+	cp_and_log "$FILES/plugins.vim" "$HOME/.vim/plugins.vim"
 
 	## Setup Colors
 	mkdir "$HOME/.vim/colors"
-	cp "$FILES/max.vim" "$HOME/.vim/colors/max.vim"
-	cp "$FILES/vimrc" "$HOME/.vimrc"
+	cp_and_log "$FILES/max.vim" "$HOME/.vim/colors/max.vim"
+	cp_and_log "$FILES/vimrc" "$HOME/.vimrc"
 	vim +PluginInstall +qall
 }
 
@@ -204,12 +220,12 @@ shell_setup() {
 
 	### Copy each config
 	PREZ="$HOME/.zprezto/runcoms"
-	cp "$PREZ/zlogin" "$HOME/.zlogin"
-	cp "$PREZ/zlogout" "$HOME/.zlogout"
-	cp "$PREZ/zprofile" "$HOME/.zprofile"
-	cp "$PREZ/zshenv" "$HOME/.zshenv"
-	cp "$FILES/zpreztorc" "$HOME/.zpreztorc"
-	cp "$FILES/zshrc"  "$HOME/.zshrc"
+	cp_and_log "$PREZ/zlogin" "$HOME/.zlogin"
+	cp_and_log "$PREZ/zlogout" "$HOME/.zlogout"
+	cp_and_log "$PREZ/zprofile" "$HOME/.zprofile"
+	cp_and_log "$PREZ/zshenv" "$HOME/.zshenv"
+	cp_and_log "$FILES/zpreztorc" "$HOME/.zpreztorc"
+	cp_and_log "$FILES/zshrc"  "$HOME/.zshrc"
 
 	## Tmux Setup
 	clone_and_log https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
@@ -218,13 +234,13 @@ shell_setup() {
 
 	## Tmuxinator Setup
 	mkdir "$HOME/.bin"
-	cp "$FILES/tmuxinator.zsh" "$HOME/.bin/tmuxinator.zsh"
+	cp_and_log "$FILES/tmuxinator.zsh" "$HOME/.bin/tmuxinator.zsh"
 	tmuxinator doctor
 
 	#Config Main Terminal
 	mkdir "$HOME/.config"
 	mkdir "$HOME/.config/tmuxinator"
-	cp "$FILES/main.yml" "$HOME/.config/tmuxinator/main.yml"
+	cp_and_log "$FILES/main.yml" "$HOME/.config/tmuxinator/main.yml"
 
 	#Powerline Fonts
 	wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
