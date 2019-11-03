@@ -220,6 +220,7 @@ shell_setup() {
 
 	## TaskMax Install
 	clone_and_log https://github.com/maxwolfe/task-max.git "$HOME/.taskmax"
+	pip3 install -r "$HOME/.taskmax/requirements.txt"
 
 	## zsh Setup
 	usermod -s "$(which zsh)" "$username"
