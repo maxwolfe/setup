@@ -18,7 +18,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'godlygeek/tabular'
 Plugin 'ervandew/supertab'
 Plugin 'chrisbra/sudoedit.vim'
-Plugin 'blindfs/vim-taskwarrior'
 
 call vundle#end()
 filetype plugin indent on
