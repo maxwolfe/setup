@@ -36,7 +36,7 @@ clone_and_log () {
 	local SOURCE="$1"; shift
 	local DEST="$1"; shift
 
-  clone_and_log "$SOURCE" "$DEST"
+  git clone "$SOURCE" "$DEST"
 	ret="$?"
 
 	if [ "$ret" -ne 0 ]; then
