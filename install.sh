@@ -96,8 +96,6 @@ cp_and_log () {
 install_packages () {
 	# Add Repositories
 
-	## Ruby
-	apt-add-repository -y ppa:brightbox/ruby-ng
 	## Tmux
 	add-apt-repository -y ppa:pi-rho/dev
 
@@ -159,11 +157,19 @@ install_packages () {
 	## Zsh
 	install_and_log zsh
 
-	## Ruby 2.4
-	install_and_log ruby2.5 ruby2.5-dev
-
 	## PDF Reader
 	install_and_log evince
+
+	## Ruby Install
+	clone_and_log https://github.com/rbenv/rbenv.git "$HOME/.rbenv"
+	echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> "$HOME/.bashrc"
+	echo 'eval "$(rbenv init -)"' >> "$HOME/.bashrc"
+	exec $SHELL
+	clone_and_log https://github.com/rbenv/ruby-build.git "$HOME/.rbenv/plugins/ruby-build"
+	echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> "$HOME/.bashrc"
+	exec $SHELL
+	rbenv install 2.4.4
+	rbenv global 2.4.4
 }
 
 vim_setup () {
@@ -187,7 +193,7 @@ other_packages () {
 	# Python Packages
 
 	## Virtualenv
-	python_install_and_log 2.7 virtualenv
+	python_install_and_log "" virtualenv
 	python_install_and_log 3 virtualenv
 
 	## Powerline
