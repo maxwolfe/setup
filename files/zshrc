@@ -13,6 +13,8 @@ fi
 # Constants
 export EDITOR=$(which vim)
 export VISUAL=$(which vim)
+# Add Ruby to path
+export PATH="$PATH:$HOME/.rbenv/versions/2.4.6/bin/"
 
 # Tmuxinator
 source ~/.bin/tmuxinator.zsh
@@ -30,9 +32,6 @@ fi
 _zsh_cli_fg() { fg; }
 zle -N _zsh_cli_fg
 bindkey '^Z' _zsh_cli_fg
-
-# Add Ruby to path
-export PATH="$PATH:$HOME/.rbenv/versions/2.4.6/bin/"
 
 # Launch Main Tmuxinator Session on Start
 if [ "$TMUX" = "" ]; then mux start main; fi
